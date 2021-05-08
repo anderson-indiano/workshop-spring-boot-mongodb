@@ -2,27 +2,23 @@ package com.indiano.workshopmongo.dto;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-
 import com.indiano.workshopmongo.domain.User;
 
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+
 @NoArgsConstructor
-public class UserDTO implements Serializable {
+public class AuthorDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	private String id;
-	private String name;
-	private String email;
+	@Getter @Setter private String id;
+	@Getter @Setter private String name;
 	
-	public UserDTO(User user) {
+	public AuthorDTO(User user) {
 		this.id = user.getId();
 		this.name = user.getName();
-		this.email = user.getEmail();
 	}
 }
