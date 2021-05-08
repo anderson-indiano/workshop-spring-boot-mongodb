@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.indiano.workshopmongo.domain.Post;
 import com.indiano.workshopmongo.domain.User;
 import com.indiano.workshopmongo.dto.UserDTO;
 import com.indiano.workshopmongo.services.UserService;
@@ -57,6 +58,12 @@ public class UserController {
 	public ResponseEntity<Void>  delete(@PathVariable String id) {
 		userService.delete(id);
 		return ResponseEntity.noContent().build(); //Code response: 204
+	}
+	
+	@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+		User user = userService.findById(id);
+		return ResponseEntity.ok().body(user.getPosts());
 	}
 	
 }
